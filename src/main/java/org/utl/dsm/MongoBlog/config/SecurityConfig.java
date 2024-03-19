@@ -24,8 +24,9 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()  // Rutas estáticas permitidas para todos
                                 .requestMatchers("/login-success").authenticated()
-                                .requestMatchers("/login-error").permitAll()
                                 .requestMatchers("/docs").permitAll()
+                                .requestMatchers("/home").permitAll()
+                                .requestMatchers("/login-error").permitAll()
                 )
                 .formLogin(formLogin ->
                         formLogin
@@ -43,7 +44,7 @@ public class SecurityConfig {
     public AuthenticationSuccessHandler loginSuccessHandler() {
         return (request, response, authentication) -> {
             // Redirige a la página de éxito después del login
-            response.sendRedirect("/login-success");
+            response.sendRedirect("/home");
         };
     }
 
